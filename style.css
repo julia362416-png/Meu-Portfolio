@@ -1,0 +1,1454 @@
+/* =========================================================
+   CONFIGURAÇÕES GERAIS
+========================================================= */
+
+:root {
+  --bg-main: #090711;
+  --bg-card: #12101f;
+  --bg-card-hover: #171329;
+  --bg-input: #1a1730;
+
+  --purple-main: #8b5cf6;
+  --purple-dark: #6d28d9;
+  --purple-light: #c084fc;
+  --purple-glow: #a855f7;
+
+  --text-main: #f5f3ff;
+  --text-muted: #aaa6b8;
+
+  --border-color: #30274d;
+  --border-hover: #8b5cf6;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+body {
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(139, 92, 246, 0.10),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      rgba(168, 85, 247, 0.08),
+      transparent 30%
+    ),
+    var(--bg-main);
+
+  color: var(--text-main);
+
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  font-family:
+    "Segoe UI",
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
+}
+
+
+.container {
+  width: 100%;
+  max-width: 1150px;
+
+  margin: 0 auto;
+
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+
+/* =========================================================
+   NAVEGAÇÃO
+========================================================= */
+
+header {
+  background: rgba(18, 16, 31, 0.92);
+
+  border-bottom: 1px solid var(--border-color);
+
+  position: sticky;
+  top: 0;
+
+  z-index: 100;
+
+  backdrop-filter: blur(12px);
+}
+
+
+.nav-container {
+  min-height: 80px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 30px;
+}
+
+
+.logo {
+  color: var(--purple-light);
+
+  text-decoration: none;
+
+  font-size: 1.55rem;
+
+  font-weight: 800;
+
+  letter-spacing: -0.5px;
+
+  transition: 0.3s;
+}
+
+
+.logo:hover {
+  color: #d8b4fe;
+
+  transform: translateY(-2px);
+}
+
+
+nav ul {
+  display: flex;
+
+  align-items: center;
+
+  gap: 30px;
+
+  list-style: none;
+}
+
+
+nav a {
+  position: relative;
+
+  color: var(--text-main);
+
+  text-decoration: none;
+
+  font-weight: 600;
+
+  padding: 28px 0;
+
+  transition: color 0.3s ease;
+}
+
+
+nav a::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+
+  bottom: 19px;
+
+  width: 0;
+
+  height: 2px;
+
+  background: var(--purple-light);
+
+  transition: width 0.3s ease;
+}
+
+
+nav a:hover,
+nav a.active {
+  color: var(--purple-light);
+}
+
+
+nav a:hover::after,
+nav a.active::after {
+  width: 100%;
+}
+
+
+/* =========================================================
+   TÍTULOS GERAIS
+========================================================= */
+
+.page-title {
+  font-size: 2.5rem;
+
+  color: var(--purple-light);
+
+  margin: 45px 0 25px;
+
+  font-weight: 800;
+}
+
+
+.mini-titulo {
+  display: inline-block;
+
+  color: var(--purple-light);
+
+  font-size: 0.78rem;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 12px;
+}
+
+
+.titulo-secao {
+  margin-bottom: 35px;
+}
+
+
+.titulo-secao > span {
+  display: inline-block;
+
+  color: var(--purple-light);
+
+  font-size: 0.75rem;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 8px;
+}
+
+
+.titulo-secao h2 {
+  font-size: 2rem;
+
+  margin-bottom: 10px;
+
+  color: var(--text-main);
+}
+
+
+.titulo-secao p {
+  color: var(--text-muted);
+
+  line-height: 1.7;
+
+  max-width: 700px;
+}
+
+
+/* =========================================================
+   CARDS GERAIS
+========================================================= */
+
+.card {
+  background: rgba(18, 16, 31, 0.9);
+
+  border: 1px solid var(--border-color);
+
+  padding: 30px;
+
+  border-radius: 16px;
+
+  margin-bottom: 30px;
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.20);
+}
+
+
+.card h2 {
+  margin-bottom: 20px;
+
+  color: var(--text-main);
+}
+
+
+/* =========================================================
+   FORMULÁRIOS
+========================================================= */
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 9px;
+
+  color: var(--text-main);
+
+  font-size: 0.92rem;
+
+  font-weight: 600;
+}
+
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+
+  padding: 14px 16px;
+
+  background: var(--bg-input);
+
+  border: 1px solid var(--border-color);
+
+  border-radius: 9px;
+
+  color: var(--text-main);
+
+  font-size: 0.95rem;
+
+  outline: none;
+
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s,
+    transform 0.25s;
+}
+
+
+.form-group textarea {
+  resize: vertical;
+
+  min-height: 120px;
+}
+
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #77718b;
+}
+
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--purple-main);
+
+  box-shadow:
+    0 0 0 3px rgba(139, 92, 246, 0.12);
+}
+
+
+.form-group select option {
+  background: var(--bg-card);
+
+  color: var(--text-main);
+}
+
+
+/* =========================================================
+   BOTÕES
+========================================================= */
+
+.btn,
+.sobre-button {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple-main),
+      var(--purple-dark)
+    );
+
+  color: white;
+
+  border: none;
+
+  padding: 13px 24px;
+
+  border-radius: 9px;
+
+  font-size: 0.95rem;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s,
+    opacity 0.25s;
+}
+
+
+.btn:hover,
+.sobre-button:hover {
+  transform: translateY(-3px);
+
+  opacity: 0.95;
+
+  box-shadow:
+    0 10px 25px rgba(139, 92, 246, 0.25);
+}
+
+
+/* =========================================================
+   ================= PORTFÓLIO ==============================
+========================================================= */
+
+
+/* Área principal */
+
+.portfolio-main {
+  padding-top: 55px;
+
+  padding-bottom: 80px;
+}
+
+
+/* =========================================================
+   INTRODUÇÃO DO PORTFÓLIO
+========================================================= */
+
+.portfolio-intro {
+  max-width: 850px;
+
+  margin-bottom: 75px;
+
+  animation: aparecer 0.8s ease both;
+}
+
+
+.portfolio-intro h1 {
+  font-size: clamp(2.5rem, 6vw, 4.2rem);
+
+  line-height: 1.05;
+
+  margin-bottom: 22px;
+
+  color: var(--text-main);
+
+  letter-spacing: -2px;
+}
+
+
+.portfolio-intro h1 span {
+  color: var(--purple-light);
+
+  text-shadow:
+    0 0 25px rgba(168, 85, 247, 0.25);
+}
+
+
+.portfolio-intro p {
+  max-width: 800px;
+
+  color: var(--text-muted);
+
+  font-size: 1.08rem;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   ÁREA DOS PROJETOS
+========================================================= */
+
+.portfolio-projetos {
+  animation: aparecer 0.9s ease 0.1s both;
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.projects-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(280px, 1fr)
+    );
+
+  gap: 28px;
+
+  width: 100%;
+}
+
+
+/* =========================================================
+   CARD DO PROJETO
+========================================================= */
+
+.project-card {
+  position: relative;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(23, 19, 41, 0.98),
+      rgba(15, 13, 27, 0.98)
+    );
+
+  border: 1px solid var(--border-color);
+
+  border-radius: 18px;
+
+  min-width: 0;
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+
+  animation: cardEntrada 0.6s ease both;
+}
+
+
+.project-card:hover {
+  transform: translateY(-9px);
+
+  border-color: var(--purple-main);
+
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.35),
+    0 0 25px rgba(139, 92, 246, 0.10);
+}
+
+
+/* =========================================================
+   IMAGEM DO PROJETO
+========================================================= */
+
+.project-image {
+  position: relative;
+
+  width: 100%;
+
+  height: 210px;
+
+  overflow: hidden;
+
+  background: #171329;
+}
+
+
+.project-image::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(9, 7, 17, 0.65),
+      transparent 60%
+    );
+
+  pointer-events: none;
+}
+
+
+.project-image img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+
+  transition:
+    transform 0.5s ease;
+}
+
+
+.project-card:hover .project-image img {
+  transform: scale(1.07);
+}
+
+
+/* =========================================================
+   CATEGORIA
+========================================================= */
+
+.project-category {
+  position: absolute;
+
+  left: 15px;
+
+  bottom: 14px;
+
+  z-index: 2;
+
+  background:
+    rgba(9, 7, 17, 0.85);
+
+  color: var(--purple-light);
+
+  border: 1px solid rgba(192, 132, 252, 0.35);
+
+  padding: 6px 11px;
+
+  border-radius: 50px;
+
+  font-size: 0.72rem;
+
+  font-weight: 700;
+
+  backdrop-filter: blur(8px);
+}
+
+
+/* =========================================================
+   CONTEÚDO DO CARD
+========================================================= */
+
+.project-content {
+  padding: 23px;
+}
+
+
+.project-content h3 {
+  color: var(--text-main);
+
+  font-size: 1.3rem;
+
+  margin-bottom: 10px;
+}
+
+
+.project-content p {
+  color: var(--text-muted);
+
+  font-size: 0.92rem;
+
+  line-height: 1.7;
+
+  margin-bottom: 20px;
+
+  min-height: 50px;
+}
+
+
+/* =========================================================
+   BOTÃO DO PROJETO
+========================================================= */
+
+.project-button {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  color: var(--purple-light);
+
+  text-decoration: none;
+
+  font-size: 0.9rem;
+
+  font-weight: 700;
+
+  transition:
+    color 0.25s,
+    gap 0.25s;
+}
+
+
+.project-button:hover {
+  color: #e9d5ff;
+
+  gap: 13px;
+}
+
+
+.project-button span {
+  font-size: 1.1rem;
+}
+
+
+/* =========================================================
+   CARREGANDO PROJETOS
+========================================================= */
+
+.loading-projetos {
+  grid-column: 1 / -1;
+
+  min-height: 250px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 18px;
+
+  color: var(--text-muted);
+}
+
+
+.loading-spinner {
+  width: 42px;
+
+  height: 42px;
+
+  border: 3px solid var(--border-color);
+
+  border-top-color: var(--purple-main);
+
+  border-radius: 50%;
+
+  animation: girar 0.8s linear infinite;
+}
+
+
+/* =========================================================
+   ERROS / SEM PROJETOS
+========================================================= */
+
+.erro-projetos,
+.sem-projetos {
+  grid-column: 1 / -1;
+
+  text-align: center;
+
+  padding: 55px 25px;
+
+  background: var(--bg-card);
+
+  border: 1px solid var(--border-color);
+
+  border-radius: 16px;
+}
+
+
+.erro-icone,
+.sem-projetos > div {
+  font-size: 2.5rem;
+
+  margin-bottom: 15px;
+}
+
+
+.erro-projetos h3,
+.sem-projetos h3 {
+  color: var(--text-main);
+
+  font-size: 1.25rem;
+
+  margin-bottom: 8px;
+}
+
+
+.erro-projetos p,
+.sem-projetos p {
+  color: var(--text-muted);
+
+  line-height: 1.6;
+}
+
+
+.erro-projetos small {
+  display: block;
+
+  margin-top: 12px;
+
+  color: #d8b4fe;
+
+  word-break: break-word;
+}
+
+
+/* =========================================================
+   SOBRE MIM
+========================================================= */
+
+.sobre-main {
+  padding-top: 60px;
+
+  padding-bottom: 80px;
+}
+
+
+.sobre-hero {
+  display: grid;
+
+  grid-template-columns:
+    minmax(280px, 0.8fr)
+    minmax(300px, 1.2fr);
+
+  gap: 70px;
+
+  align-items: center;
+
+  margin-bottom: 100px;
+}
+
+
+.foto-container {
+  position: relative;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  min-height: 430px;
+}
+
+
+.foto-glow {
+  position: absolute;
+
+  width: 330px;
+
+  height: 330px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(168, 85, 247, 0.35),
+      transparent 70%
+    );
+
+  filter: blur(20px);
+
+  animation: pulsar 4s ease-in-out infinite;
+}
+
+
+.foto-perfil {
+  position: relative;
+
+  z-index: 2;
+
+  width: 330px;
+
+  height: 400px;
+
+  object-fit: cover;
+
+  border-radius: 25px;
+
+  border: 1px solid var(--border-color);
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.45);
+
+  transition:
+    transform 0.4s ease,
+    border-color 0.4s ease;
+}
+
+
+.foto-perfil:hover {
+  transform: translateY(-8px) rotate(1deg);
+
+  border-color: var(--purple-main);
+}
+
+
+.sobre-tag {
+  display: inline-block;
+
+  color: var(--purple-light);
+
+  background: rgba(139, 92, 246, 0.10);
+
+  border: 1px solid var(--border-color);
+
+  padding: 8px 14px;
+
+  border-radius: 50px;
+
+  margin-bottom: 18px;
+
+  font-size: 0.9rem;
+}
+
+
+.sobre-apresentacao h1 {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+
+  line-height: 1.1;
+
+  margin-bottom: 20px;
+}
+
+
+.sobre-apresentacao h1 span {
+  color: var(--purple-light);
+}
+
+
+.sobre-apresentacao p {
+  color: var(--text-muted);
+
+  line-height: 1.8;
+
+  margin-bottom: 16px;
+}
+
+
+.texto-destaque {
+  color: var(--text-main) !important;
+
+  font-size: 1.15rem;
+}
+
+
+.sobre-info {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 50px;
+
+  margin-bottom: 100px;
+
+  padding: 45px;
+
+  border: 1px solid var(--border-color);
+
+  border-radius: 20px;
+
+  background: rgba(18, 16, 31, 0.65);
+}
+
+
+.info-texto h2 {
+  font-size: 2rem;
+
+  margin: 10px 0 18px;
+}
+
+
+.info-texto p {
+  color: var(--text-muted);
+
+  line-height: 1.8;
+
+  margin-bottom: 15px;
+}
+
+
+/* ========================================
+   SEÇÃO SOBRE MEU TRABALHO
+======================================== */
+
+.sobre-info {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 40px;
+
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+
+  padding: 40px;
+
+  margin-top: 70px;
+  margin-bottom: 70px;
+}
+
+
+/* ========================================
+   TEXTO DA SEÇÃO
+======================================== */
+
+.info-texto {
+  max-width: 430px;
+}
+
+.mini-titulo {
+  display: block;
+
+  color: var(--purple-light);
+
+  font-size: 0.8rem;
+  font-weight: 800;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 25px;
+}
+
+.info-texto h2 {
+  font-size: 2rem;
+  line-height: 1.35;
+
+  margin-bottom: 25px;
+
+  color: var(--text-main);
+}
+
+.info-texto p {
+  color: var(--text-muted);
+
+  font-size: 1rem;
+  line-height: 1.9;
+
+  margin-bottom: 20px;
+}
+
+
+/* ========================================
+   CARDS 01 / 02 / 03
+======================================== */
+
+.numeros {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 15px;
+
+  align-items: start;
+
+  width: 100%;
+}
+
+
+/* CARD INDIVIDUAL */
+
+.numero-card {
+  width: 100%;
+  height: 240px;
+
+  background: #11101d;
+
+  border: 1px solid var(--border-color);
+
+  border-radius: 15px;
+
+  padding: 25px 20px;
+
+  display: flex;
+  flex-direction: column;
+
+  transition: all 0.3s ease;
+}
+
+
+/* NÚMERO */
+
+.numero-card strong {
+  font-size: 2rem;
+
+  line-height: 1;
+
+  color: var(--purple-light);
+
+  margin-bottom: 25px;
+}
+
+
+/* TÍTULO */
+
+.numero-card span {
+  font-size: 1rem;
+
+  font-weight: 700;
+
+  color: var(--text-main);
+
+  margin-bottom: 10px;
+}
+
+
+/* TEXTO */
+
+.numero-card p {
+  color: var(--text-muted);
+
+  font-size: 0.85rem;
+
+  line-height: 1.5;
+
+  margin: 0;
+}
+
+
+/* EFEITO */
+
+.numero-card:hover {
+  transform: translateY(-6px);
+
+  border-color: var(--purple-main);
+
+  box-shadow: 0 12px 30px rgba(139, 92, 246, 0.15);
+}
+
+
+/* =========================================================
+   HABILIDADES
+========================================================= */
+
+.habilidades,
+.especialidades {
+  margin-bottom: 100px;
+}
+
+
+.habilidades-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 22px;
+}
+
+
+.habilidade-card {
+  background: var(--bg-card);
+
+  border: 1px solid var(--border-color);
+
+  border-radius: 17px;
+
+  padding: 30px;
+
+  transition: 0.3s;
+}
+
+
+.habilidade-card:hover {
+  transform: translateY(-7px);
+
+  border-color: var(--purple-main);
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+
+.icone {
+  font-size: 2rem;
+
+  margin-bottom: 18px;
+}
+
+
+.habilidade-card h3 {
+  margin-bottom: 10px;
+
+  font-size: 1.2rem;
+}
+
+
+.habilidade-card p {
+  color: var(--text-muted);
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   ESPECIALIDADES
+========================================================= */
+
+.select-container {
+  max-width: 750px;
+
+  background: var(--bg-card);
+
+  border: 1px solid var(--border-color);
+
+  padding: 30px;
+
+  border-radius: 16px;
+}
+
+
+.select-container label {
+  display: block;
+
+  margin-bottom: 10px;
+
+  font-weight: 600;
+}
+
+
+.select-container select {
+  width: 100%;
+
+  padding: 15px;
+
+  border-radius: 10px;
+
+  background: var(--bg-input);
+
+  color: var(--text-main);
+
+  border: 1px solid var(--border-color);
+
+  font-size: 0.95rem;
+}
+
+
+/* =========================================================
+   RODAPÉ
+========================================================= */
+
+footer {
+  margin-top: auto;
+
+  background: rgba(18, 16, 31, 0.92);
+
+  border-top: 1px solid var(--border-color);
+
+  padding: 25px 0;
+
+  text-align: center;
+
+  color: var(--text-muted);
+
+  font-size: 0.9rem;
+}
+
+
+/* =========================================================
+   ANIMAÇÕES
+========================================================= */
+
+@keyframes aparecer {
+
+  from {
+    opacity: 0;
+
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+
+}
+
+
+@keyframes cardEntrada {
+
+  from {
+    opacity: 0;
+
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+
+}
+
+
+@keyframes girar {
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+
+@keyframes pulsar {
+
+  0%,
+  100% {
+    transform: scale(1);
+
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: scale(1.12);
+
+    opacity: 1;
+  }
+
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .sobre-hero {
+    grid-template-columns: 1fr;
+
+    gap: 40px;
+
+    text-align: center;
+  }
+
+
+  .foto-container {
+    min-height: 380px;
+  }
+
+
+  .sobre-info {
+    grid-template-columns: 1fr;
+  }
+
+
+  .habilidades-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .nav-container {
+    flex-direction: column;
+
+    padding-top: 18px;
+
+    padding-bottom: 18px;
+  }
+
+
+  nav ul {
+    gap: 18px;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+  }
+
+
+  nav a {
+    padding: 5px 0;
+  }
+
+
+  nav a::after {
+    bottom: -3px;
+  }
+
+
+  .portfolio-main,
+  .sobre-main {
+    padding-top: 40px;
+  }
+
+
+  .portfolio-intro {
+    margin-bottom: 55px;
+  }
+
+
+  .portfolio-intro h1 {
+    font-size: 2.7rem;
+  }
+
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .habilidades-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .numeros {
+    grid-template-columns: 1fr;
+  }
+
+
+  .sobre-info {
+    padding: 25px;
+  }
+
+
+  .foto-perfil {
+    width: 280px;
+
+    height: 350px;
+  }
+
+}
+
+
+@media (max-width: 450px) {
+
+  .container {
+    padding-left: 16px;
+
+    padding-right: 16px;
+  }
+
+
+  nav ul {
+    gap: 13px;
+  }
+
+
+  nav a {
+    font-size: 0.88rem;
+  }
+
+
+  .portfolio-intro h1 {
+    font-size: 2.3rem;
+  }
+
+
+  .titulo-secao h2 {
+    font-size: 1.7rem;
+  }
+
+
+  .project-image {
+    height: 190px;
+  }
+
+}

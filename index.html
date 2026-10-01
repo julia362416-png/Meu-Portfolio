@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Meu Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVEGAÇÃO -->
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo">Meu Portfolio</a>
+      <nav>
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="sobre.html">Sobre Mim</a></li>
+          <li><a href="portfolio.html">Portfólio</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="container">
+    <section style="text-align: center; padding: 40px 0 20px 0;">
+      <h1 class="page-title" style="margin-top: 0;">Bem-vindo ao Meu Portfólio</h1>
+      <p style="color: var(--text-muted); margin-bottom: 25px;">
+        Explore meus projetos, conheça minha trajetória e entre em contato.
+      </p>
+      
+      <div style="display: flex; gap: 15px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap;">
+        <a href="portfolio.html" class="btn">Ver Projetos</a>
+        <a href="sobre.html" class="btn" style="background: transparent; border: 1px solid var(--purple-main);">Sobre Mim</a>
+        <a href="contato.html" class="btn" style="background: transparent; border: 1px solid var(--border-color);">Contato</a>
+      </div>
+    </section>
+
+    <!-- FORMULÁRIO DE USUÁRIO -->
+    <div class="card">
+      <h2>Cadastro de Usuário</h2>
+      <form id="user-form">
+        <div class="form-group">
+          <label for="nome">Nome Completo</label>
+          <input type="text" id="nome" placeholder="Seu nome" required>
+        </div>
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" placeholder="seuemail@exemplo.com" required>
+        </div>
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <input type="password" id="senha" placeholder="Sua senha" required>
+        </div>
+        
+        <!-- SELECTION 1 -->
+        <div class="form-group">
+          <label for="tipo_usuario">Tipo de Usuário</label>
+          <select id="tipo_usuario" required>
+            <option value="estudante">Estudante / Aluno</option>
+            <option value="recrutador">Recrutador / Empresa</option>
+            <option value="visitante">Visitante</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn">Cadastrar Usuário</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> — Todos os direitos reservados.</p>
+    </div>
+  </footer>
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="script.js"></script>
+</body>
+</html>

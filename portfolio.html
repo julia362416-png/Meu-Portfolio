@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Portfólio - Meu Portfolio</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- SUPABASE -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body class="portfolio-page">
+
+  <!-- =========================
+       NAVEGAÇÃO
+  ========================== -->
+
+  <header>
+
+    <div class="container nav-container">
+
+      <a href="index.html" class="logo">
+        Meu Portfolio
+      </a>
+
+      <nav>
+
+        <ul>
+
+          <li>
+            <a href="index.html">
+              Home
+            </a>
+          </li>
+
+          <li>
+            <a href="sobre.html">
+              Sobre Mim
+            </a>
+          </li>
+
+          <li>
+            <a href="portfolio.html" class="active">
+              Portfólio
+            </a>
+          </li>
+
+          <li>
+            <a href="contato.html">
+              Contato
+            </a>
+          </li>
+
+        </ul>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       CONTEÚDO
+  ========================== -->
+
+  <main class="container portfolio-main">
+
+    <section class="portfolio-intro">
+
+      <span class="mini-titulo">
+        MEUS TRABALHOS
+      </span>
+
+      <h1>
+        Meu <span>Portfólio</span>
+      </h1>
+
+      <p>
+        Confira alguns dos projetos que desenvolvi durante meus
+        estudos e experiências com desenvolvimento web.
+        Cada projeto representa uma oportunidade de aprender,
+        criar e colocar minhas habilidades em prática.
+      </p>
+
+    </section>
+
+
+    <!-- =========================
+         PROJETOS
+    ========================== -->
+
+    <section class="portfolio-projetos">
+
+      <div class="titulo-secao">
+
+        <span>
+          PROJETOS
+        </span>
+
+        <h2>
+          Meus projetos
+        </h2>
+
+        <p>
+          Conheça alguns dos meus trabalhos.
+        </p>
+
+      </div>
+
+
+      <!-- OS PROJETOS DO SUPABASE APARECEM AQUI -->
+
+      <div
+        id="projects-grid"
+        class="projects-grid"
+      >
+
+        <div class="loading-projetos">
+          <div class="loading-spinner"></div>
+
+          <p>
+            Carregando projetos...
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       RODAPÉ
+  ========================== -->
+
+  <footer>
+
+    <div class="container">
+
+      <p>
+        © <span id="year"></span>
+        — Todos os direitos reservados.
+      </p>
+
+    </div>
+
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+  <script src="script.js"></script>
+
+</body>
+
+</html>
