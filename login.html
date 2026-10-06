@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#080b14"
+    >
+
+    <title>Login | Lavinia Cristina</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .login-page {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 30px;
+
+            background:
+                radial-gradient(
+                    circle at 50% 20%,
+                    rgba(80, 255, 180, .08),
+                    transparent 35%
+                ),
+                #080b14;
+
+        }
+
+
+        .login-card {
+
+            width: min(440px, 100%);
+
+            padding: 45px;
+
+            border: 1px solid rgba(255,255,255,.08);
+
+            border-radius: 24px;
+
+            background:
+                rgba(255,255,255,.035);
+
+            backdrop-filter: blur(20px);
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,.35);
+
+        }
+
+
+        .login-logo {
+
+            display: block;
+
+            width: fit-content;
+
+            margin: 0 auto 35px;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size: 2rem;
+
+            font-weight: 700;
+
+            color: #fff;
+
+            text-decoration: none;
+
+        }
+
+
+        .login-logo span {
+
+            color: #65ffb3;
+
+        }
+
+
+        .login-header {
+
+            text-align: center;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .login-header h1 {
+
+            margin: 0 0 10px;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size: 2rem;
+
+            color: #fff;
+
+        }
+
+
+        .login-header p {
+
+            margin: 0;
+
+            color: rgba(255,255,255,.6);
+
+        }
+
+
+        .login-form {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 12px;
+
+        }
+
+
+        .login-form label {
+
+            margin-top: 8px;
+
+            color: rgba(255,255,255,.8);
+
+            font-size: .9rem;
+
+            font-weight: 600;
+
+        }
+
+
+        .login-form input {
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            padding: 15px 16px;
+
+            border: 1px solid rgba(255,255,255,.1);
+
+            border-radius: 12px;
+
+            outline: none;
+
+            background: rgba(255,255,255,.04);
+
+            color: #fff;
+
+            font-family: inherit;
+
+            transition: .25s ease;
+
+        }
+
+
+        .login-form input:focus {
+
+            border-color: #65ffb3;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(101,255,179,.08);
+
+        }
+
+
+        .login-button {
+
+            margin-top: 20px;
+
+            width: 100%;
+
+            padding: 15px;
+
+            border: 0;
+
+            border-radius: 12px;
+
+            cursor: pointer;
+
+            background: #65ffb3;
+
+            color: #080b14;
+
+            font-weight: 700;
+
+            font-family: inherit;
+
+            transition: .25s ease;
+
+        }
+
+
+        .login-button:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 30px
+                rgba(101,255,179,.2);
+
+        }
+
+
+        .login-button:disabled {
+
+            opacity: .6;
+
+            cursor: not-allowed;
+
+            transform: none;
+
+        }
+
+
+        .login-message {
+
+            min-height: 22px;
+
+            margin: 18px 0 0;
+
+            text-align: center;
+
+            font-size: .9rem;
+
+        }
+
+
+        .login-message.error {
+
+            color: #ff6b81;
+
+        }
+
+
+        .login-message.success {
+
+            color: #65ffb3;
+
+        }
+
+
+        .back-home {
+
+            display: block;
+
+            margin-top: 25px;
+
+            text-align: center;
+
+            color: rgba(255,255,255,.55);
+
+            text-decoration: none;
+
+            font-size: .9rem;
+
+        }
+
+
+        .back-home:hover {
+
+            color: #65ffb3;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="cursor-glow"></div>
+
+
+    <main class="login-page">
+
+        <section class="login-card">
+
+            <a
+                href="index.html"
+                class="login-logo"
+            >
+                L<span>.</span>C
+            </a>
+
+
+            <div class="login-header">
+
+                <h1>
+                    Área administrativa
+                </h1>
+
+                <p>
+                    Entre para gerenciar seu portfólio.
+                </p>
+
+            </div>
+
+
+            <form
+                class="login-form"
+                id="loginForm"
+            >
+
+                <label for="loginEmail">
+                    E-mail
+                </label>
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="seuemail@exemplo.com"
+                    autocomplete="email"
+                    required
+                >
+
+
+                <label for="loginSenha">
+                    Senha
+                </label>
+
+                <input
+                    type="password"
+                    id="loginSenha"
+                    placeholder="Digite sua senha"
+                    autocomplete="current-password"
+                    required
+                >
+
+
+                <button
+                    type="submit"
+                    class="login-button"
+                    id="loginButton"
+                >
+
+                    Entrar
+
+                </button>
+
+
+                <p
+                    id="loginMessage"
+                    class="login-message"
+                    role="alert"
+                ></p>
+
+            </form>
+
+
+            <a
+                href="index.html"
+                class="back-home"
+            >
+                ← Voltar para o portfólio
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+
+        const SUPABASE_URL =
+            "https://bgkihjquthkgaaqsbgda.supabase.co";
+
+
+        const SUPABASE_KEY =
+            "sb_publishable_QmP4kHC-Yerg5mH65dnHQw_ZA6UJEBF";
+
+
+        const supabaseClient =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_KEY
+            );
+
+
+        const loginForm =
+            document.getElementById(
+                "loginForm"
+            );
+
+
+        const loginMessage =
+            document.getElementById(
+                "loginMessage"
+            );
+
+
+        const loginButton =
+            document.getElementById(
+                "loginButton"
+            );
+
+
+        loginForm.addEventListener(
+            "submit",
+            async (event) => {
+
+                event.preventDefault();
+
+
+                const email =
+                    document
+                        .getElementById(
+                            "loginEmail"
+                        )
+                        .value
+                        .trim();
+
+
+                const senha =
+                    document
+                        .getElementById(
+                            "loginSenha"
+                        )
+                        .value;
+
+
+                loginMessage.textContent =
+                    "Verificando acesso...";
+
+                loginMessage.className =
+                    "login-message";
+
+
+                loginButton.disabled = true;
+
+                loginButton.textContent =
+                    "Entrando...";
+
+
+                try {
+
+                    const {
+                        data,
+                        error
+                    } =
+                        await supabaseClient
+                            .auth
+                            .signInWithPassword({
+
+                                email: email,
+
+                                password: senha
+
+                            });
+
+
+                    if (error) {
+                        throw error;
+                    }
+
+
+                    console.log(
+                        "Usuário autenticado:",
+                        data.user
+                    );
+
+
+                    loginMessage.textContent =
+                        "Login realizado com sucesso!";
+
+                    loginMessage.className =
+                        "login-message success";
+
+
+                    setTimeout(() => {
+
+                        window.location.href =
+                            "dashboard.html";
+
+                    }, 600);
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Erro no login:",
+                        error
+                    );
+
+
+                    loginMessage.textContent =
+                        "E-mail ou senha incorretos.";
+
+                    loginMessage.className =
+                        "login-message error";
+
+
+                } finally {
+
+                    loginButton.disabled =
+                        false;
+
+                    loginButton.textContent =
+                        "Entrar";
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

@@ -2303,5 +2303,242 @@ footer p {
 
     scroll-behavior:
       auto !important;
+  }/* ======================================================
+   SISTEMA DE CONTA / LOGIN
+====================================================== */
+
+.cadastro-section {
+  position: relative;
+  max-width: 620px;
+  margin: 0 auto 80px;
+  padding: 40px;
+
+  background: rgba(18, 16, 31, 0.78);
+
+  border: 1px solid var(--border-color);
+  border-radius: 22px;
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.35),
+    0 0 50px rgba(139, 92, 246, 0.08);
+}
+
+/* Cadeado */
+
+.cadastro-icon {
+  width: 70px;
+  height: 70px;
+
+  display: grid;
+  place-items: center;
+
+  margin: 0 auto 20px;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(139, 92, 246, 0.25),
+      rgba(109, 40, 217, 0.15)
+    );
+
+  border: 1px solid rgba(139, 92, 246, 0.35);
+
+  font-size: 2rem;
+
+  box-shadow:
+    0 0 35px rgba(139, 92, 246, 0.15);
+}
+
+.cadastro-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.cadastro-header h2 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.cadastro-header p {
+  color: var(--text-muted);
+}
+
+/* Abas */
+
+.auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 8px;
+
+  padding: 6px;
+
+  margin-bottom: 25px;
+
+  background: rgba(9, 7, 17, 0.6);
+
+  border: 1px solid var(--border-color);
+
+  border-radius: 12px;
+}
+
+.auth-tab {
+  border: none;
+
+  padding: 12px;
+
+  border-radius: 8px;
+
+  background: transparent;
+
+  color: var(--text-muted);
+
+  font-family: inherit;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.auth-tab:hover {
+  color: var(--text-main);
+}
+
+.auth-tab.active {
+  color: white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple-main),
+      var(--purple-dark)
+    );
+
+  box-shadow:
+    0 8px 20px rgba(139, 92, 246, 0.2);
+}
+
+/* Botão */
+
+.auth-submit {
+  width: 100%;
+  margin-top: 5px;
+}
+
+/* Usuário conectado */
+
+.logged-user {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 18px;
+
+  margin-top: 20px;
+
+  border-radius: 14px;
+
+  background: rgba(139, 92, 246, 0.08);
+
+  border: 1px solid rgba(139, 92, 246, 0.25);
+}
+
+.logged-lock {
+  width: 45px;
+  height: 45px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 12px;
+
+  background: rgba(139, 92, 246, 0.15);
+
+  font-size: 1.3rem;
+}
+
+.logged-user strong {
+  display: block;
+}
+
+.logged-user span {
+  display: block;
+
+  color: var(--text-muted);
+
+  font-size: 0.85rem;
+}
+
+/* Área da conta no menu */
+
+.account-area {
+  display: flex;
+  align-items: center;
+}
+
+.account-link {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 8px 12px;
+
+  border-radius: 9px;
+
+  color: var(--text-muted);
+
+  text-decoration: none;
+
+  font-size: 0.9rem;
+
+  font-weight: 700;
+
+  border: 1px solid transparent;
+
+  transition: 0.25s ease;
+}
+
+.account-link:hover {
+  color: white;
+
+  border-color: var(--border-color);
+
+  background: rgba(139, 92, 246, 0.08);
+}
+
+.account-link.logged {
+  color: var(--purple-light);
+
+  border-color:
+    rgba(139, 92, 246, 0.25);
+}
+
+/* Responsivo */
+
+@media (max-width: 700px) {
+
+  .cadastro-section {
+    padding: 25px 20px;
   }
+
+  .auth-tabs {
+    grid-template-columns: 1fr;
+  }
+
+  .account-link {
+    font-size: 0.8rem;
+  }
+
+}
 }

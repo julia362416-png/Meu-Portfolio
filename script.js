@@ -6,20 +6,19 @@ const SUPABASE_URL =
   'https://uoqvnwkcvctbaujalprc.supabase.co';
 
 const SUPABASE_KEY =
-  'sb_publishable_x7mGxz7QtNNB1JAAZIpPew_UsJ1RDb2';
+  'sb_publishable_x7mGxz7QtNNB1JAAZIpPew_UsJ1RDbK2';
 
 
 // ======================================================
-// CONEXÃO COM O SUPABASE
+// CONEXÃO
 // ======================================================
 
 let supabaseClient = null;
 
-
 if (
+  window.supabase &&
   SUPABASE_URL &&
-  SUPABASE_KEY &&
-  window.supabase
+  SUPABASE_KEY
 ) {
 
   supabaseClient =
@@ -29,53 +28,53 @@ if (
     );
 
   console.log(
-    '✅ Supabase conectado com sucesso!'
+    '✅ Supabase conectado!'
   );
 
 } else {
 
-  console.warn(
-    '⚠️ Supabase não configurado.'
+  console.error(
+    '❌ Supabase não foi carregado.'
   );
 
 }
 
 
 // ======================================================
-// QUANDO A PÁGINA CARREGAR
+// QUANDO O SITE CARREGAR
 // ======================================================
 
 document.addEventListener(
   'DOMContentLoaded',
-  () => {
+  async () => {
 
-    // =========================
-    // ANO DO RODAPÉ
-    // =========================
-
+    // Ano
     const year =
       document.getElementById('year');
 
     if (year) {
-
       year.textContent =
         new Date().getFullYear();
-
     }
 
 
-    // =========================
-    // PROJETOS
-    // =========================
-
+    // Projetos
     const projectsGrid =
       document.getElementById(
         'projects-grid'
       );
 
     if (projectsGrid) {
-
       loadProjects();
+    }
+
+
+    // Sistema de conta
+    if (supabaseClient) {
+
+      await verificarUsuario();
+
+      configurarAutenticacao();
 
     }
 
@@ -84,7 +83,631 @@ document.addEventListener(
 
 
 // ======================================================
-// CARREGAR PROJETOS
+// VERIFICAR USUÁRIO LOGADO
+// ======================================================
+
+async function verificarUsuario() {
+
+  const {
+    data,
+    error
+  } = await supabaseClient.auth.getSession();
+
+
+  if (error) {
+
+    console.error(
+      'Erro ao verificar sessão:',
+      error
+    );
+
+    return;
+
+  }
+
+
+  const session =
+    data.session;
+
+
+  if (session) {
+
+    console.log(
+      '🔒 Usuário conectado:',
+      session.user.email
+    );
+
+    atualizarInterfaceUsuario(
+      session.user
+    );
+
+  } else {
+
+    console.log(
+      '🔓 Nenhum usuário conectado.'
+    );
+
+    atualizarInterfaceUsuario(null);
+
+  }
+
+
+  // Fica observando login/logout
+  supabaseClient.auth.onAuthStateChange(
+    (_event, session) => {
+
+      if (session) {
+
+        atualizarInterfaceUsuario(
+          session.user
+        );
+
+      } else {
+
+        atualizarInterfaceUsuario(
+          null
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+// ======================================================
+// ATUALIZAR INTERFACE DO USUÁRIO
+// ======================================================
+
+function atualizarInterfaceUsuario(user) {
+
+  const accountArea =
+    document.getElementById(
+      'account-area'
+    );
+
+
+  if (accountArea) {
+
+    if (user) {
+
+      const nome =
+        user.user_metadata?.nome ||
+        user.email?.split('@')[0] ||
+        'Minha conta';
+
+
+      accountArea.innerHTML = `
+
+        <a
+          href="portfolio.html"
+          class="account-link logged"
+        >
+          🔒 ${nome}
+        </a>
+
+        <button
+          type="button"
+          id="logout-button"
+          class="account-link"
+          style="
+            background: none;
+            cursor: pointer;
+            font-family: inherit;
+          "
+        >
+          Sair
+        </button>
+
+      `;
+
+
+      const logoutButton =
+        document.getElementById(
+          'logout-button'
+        );
+
+
+      if (logoutButton) {
+
+        logoutButton.addEventListener(
+          'click',
+          fazerLogout
+        );
+
+      }
+
+    } else {
+
+      accountArea.innerHTML = `
+
+        <a
+          href="index.html#conta"
+          class="account-link"
+        >
+          🔒 Entrar
+        </a>
+
+      `;
+
+    }
+
+  }
+
+
+  // Dados dentro do formulário
+  const loggedUser =
+    document.getElementById(
+      'logged-user'
+    );
+
+
+  if (!loggedUser) {
+    return;
+  }
+
+
+  if (user) {
+
+    loggedUser.style.display =
+      'flex';
+
+
+    const loggedName =
+      document.getElementById(
+        'logged-name'
+      );
+
+
+    const loggedEmail =
+      document.getElementById(
+        'logged-email'
+      );
+
+
+    if (loggedName) {
+
+      loggedName.textContent =
+        user.user_metadata?.nome ||
+        'Usuário';
+
+    }
+
+
+    if (loggedEmail) {
+
+      loggedEmail.textContent =
+        user.email || '';
+
+    }
+
+  } else {
+
+    loggedUser.style.display =
+      'none';
+
+  }
+
+}
+
+
+// ======================================================
+// CONFIGURAR LOGIN / CADASTRO
+// ======================================================
+
+function configurarAutenticacao() {
+
+  const form =
+    document.getElementById(
+      'user-form'
+    );
+
+
+  if (!form) {
+    return;
+  }
+
+
+  const tabCadastro =
+    document.getElementById(
+      'tab-cadastro'
+    );
+
+
+  const tabLogin =
+    document.getElementById(
+      'tab-login'
+    );
+
+
+  const nomeGroup =
+    document.getElementById(
+      'nome-group'
+    );
+
+
+  const tipoGroup =
+    document.getElementById(
+      'tipo-group'
+    );
+
+
+  const title =
+    document.getElementById(
+      'auth-title'
+    );
+
+
+  const description =
+    document.getElementById(
+      'auth-description'
+    );
+
+
+  const button =
+    document.getElementById(
+      'auth-submit'
+    );
+
+
+  let modo = 'cadastro';
+
+
+  // ====================================================
+  // MODO CADASTRO
+  // ====================================================
+
+  function ativarCadastro() {
+
+    modo = 'cadastro';
+
+
+    tabCadastro.classList.add(
+      'active'
+    );
+
+    tabLogin.classList.remove(
+      'active'
+    );
+
+
+    nomeGroup.style.display =
+      'flex';
+
+    tipoGroup.style.display =
+      'flex';
+
+
+    document
+      .getElementById('nome')
+      .required = true;
+
+
+    title.textContent =
+      'Crie sua conta';
+
+
+    description.textContent =
+      'Crie sua conta para acessar seu espaço dentro do site.';
+
+
+    button.textContent =
+      'Criar minha conta →';
+
+  }
+
+
+  // ====================================================
+  // MODO LOGIN
+  // ====================================================
+
+  function ativarLogin() {
+
+    modo = 'login';
+
+
+    tabLogin.classList.add(
+      'active'
+    );
+
+    tabCadastro.classList.remove(
+      'active'
+    );
+
+
+    nomeGroup.style.display =
+      'none';
+
+    tipoGroup.style.display =
+      'none';
+
+
+    document
+      .getElementById('nome')
+      .required = false;
+
+
+    title.textContent =
+      'Bem-vindo de volta';
+
+
+    description.textContent =
+      'Entre na sua conta para continuar.';
+
+
+    button.textContent =
+      'Entrar na minha conta →';
+
+  }
+
+
+  tabCadastro.addEventListener(
+    'click',
+    ativarCadastro
+  );
+
+
+  tabLogin.addEventListener(
+    'click',
+    ativarLogin
+  );
+
+
+  // ====================================================
+  // ENVIO DO FORMULÁRIO
+  // ====================================================
+
+  form.addEventListener(
+    'submit',
+    async (event) => {
+
+      event.preventDefault();
+
+
+      const email =
+        document
+          .getElementById('email')
+          .value
+          .trim();
+
+
+      const senha =
+        document
+          .getElementById('senha')
+          .value;
+
+
+      if (!email || !senha) {
+
+        alert(
+          'Preencha seu e-mail e sua senha.'
+        );
+
+        return;
+
+      }
+
+
+      button.disabled = true;
+
+      button.textContent =
+        modo === 'cadastro'
+          ? 'Criando conta...'
+          : 'Entrando...';
+
+
+      try {
+
+        // ==============================================
+        // CADASTRO
+        // ==============================================
+
+        if (modo === 'cadastro') {
+
+          const nome =
+            document
+              .getElementById('nome')
+              .value
+              .trim();
+
+
+          const tipo_usuario =
+            document
+              .getElementById('tipo_usuario')
+              .value;
+
+
+          const {
+            data,
+            error
+          } =
+            await supabaseClient.auth.signUp({
+
+              email,
+
+              password: senha,
+
+              options: {
+
+                data: {
+
+                  nome,
+
+                  tipo_usuario
+
+                }
+
+              }
+
+            });
+
+
+          if (error) {
+            throw error;
+          }
+
+
+          // Se a sessão foi criada
+          if (data.session) {
+
+            alert(
+              'Conta criada com sucesso! 🔒'
+            );
+
+
+            window.location.href =
+              'portfolio.html';
+
+            return;
+
+          }
+
+
+          // Confirmação de e-mail ativada
+          alert(
+            'Conta criada! 📧 Verifique seu e-mail para confirmar a conta.'
+          );
+
+
+          ativarLogin();
+
+
+          form.reset();
+
+        }
+
+
+        // ==============================================
+        // LOGIN
+        // ==============================================
+
+        else {
+
+          const {
+            data,
+            error
+          } =
+            await supabaseClient.auth
+              .signInWithPassword({
+
+                email,
+
+                password: senha
+
+              });
+
+
+          if (error) {
+            throw error;
+          }
+
+
+          if (data.session) {
+
+            alert(
+              'Login realizado com sucesso! 🔒'
+            );
+
+
+            window.location.href =
+              'portfolio.html';
+
+          }
+
+        }
+
+      } catch (error) {
+
+        console.error(
+          'Erro de autenticação:',
+          error
+        );
+
+
+        alert(
+          'Não foi possível concluir a operação:\n\n' +
+          error.message
+        );
+
+      } finally {
+
+        button.disabled = false;
+
+
+        if (modo === 'cadastro') {
+
+          button.textContent =
+            'Criar minha conta →';
+
+        } else {
+
+          button.textContent =
+            'Entrar na minha conta →';
+
+        }
+
+      }
+
+    }
+  );
+
+}
+
+
+// ======================================================
+// LOGOUT
+// ======================================================
+
+async function fazerLogout() {
+
+  if (!supabaseClient) {
+    return;
+  }
+
+
+  const confirmar =
+    confirm(
+      'Deseja sair da sua conta?'
+    );
+
+
+  if (!confirmar) {
+    return;
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient.auth.signOut();
+
+
+  if (error) {
+
+    alert(
+      'Erro ao sair da conta: ' +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  alert(
+    'Você saiu da sua conta.'
+  );
+
+
+  window.location.href =
+    'index.html';
+
+}
+
+
+// ======================================================
+// PROJETOS
 // ======================================================
 
 async function loadProjects() {
@@ -96,9 +719,7 @@ async function loadProjects() {
 
 
   if (!projectsGrid) {
-
     return;
-
   }
 
 
@@ -117,8 +738,7 @@ async function loadProjects() {
         </h3>
 
         <p>
-          Verifique a URL e a Publishable Key
-          no arquivo script.js.
+          Verifique a conexão com o Supabase.
         </p>
 
       </div>
@@ -150,70 +770,24 @@ async function loadProjects() {
     const {
       data,
       error
-    } = await supabaseClient
+    } =
+      await supabaseClient
+        .from('projetos')
+        .select('*')
+        .order(
+          'id',
+          {
+            ascending: false
+          }
+        );
 
-      .from('projetos')
-
-      .select('*')
-
-      .order(
-        'id',
-        {
-          ascending: false
-        }
-      );
-
-
-    // =========================
-    // ERRO
-    // =========================
 
     if (error) {
-
-      console.error(
-        'Erro ao buscar projetos:',
-        error
-      );
-
-
-      projectsGrid.innerHTML = `
-
-        <div class="erro-projetos">
-
-          <div class="erro-icone">
-            ⚠️
-          </div>
-
-          <h3>
-            Erro ao carregar projetos
-          </h3>
-
-          <p>
-            Não foi possível acessar a tabela
-            "projetos".
-          </p>
-
-          <small>
-            ${error.message}
-          </small>
-
-        </div>
-
-      `;
-
-      return;
-
+      throw error;
     }
 
 
-    // =========================
-    // NENHUM PROJETO
-    // =========================
-
-    if (
-      !data ||
-      data.length === 0
-    ) {
+    if (!data || data.length === 0) {
 
       projectsGrid.innerHTML = `
 
@@ -228,8 +802,7 @@ async function loadProjects() {
           </h3>
 
           <p>
-            Adicione seus projetos na tabela
-            "projetos" do Supabase.
+            Adicione seus projetos no Supabase.
           </p>
 
         </div>
@@ -240,10 +813,6 @@ async function loadProjects() {
 
     }
 
-
-    // =========================
-    // CARDS
-    // =========================
 
     projectsGrid.innerHTML =
       data.map(
@@ -269,11 +838,6 @@ async function loadProjects() {
             'Projeto Web';
 
 
-          const link =
-            projeto.link ||
-            '#';
-
-
           return `
 
             <article class="project-card">
@@ -294,7 +858,6 @@ async function loadProjects() {
 
               </div>
 
-
               <div class="project-content">
 
                 <h3>
@@ -310,7 +873,7 @@ async function loadProjects() {
                     ? `
 
                       <a
-                        href="${link}"
+                        href="${projeto.link}"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="project-button"
@@ -336,7 +899,7 @@ async function loadProjects() {
   } catch (error) {
 
     console.error(
-      'Erro inesperado:',
+      'Erro ao carregar projetos:',
       error
     );
 
@@ -350,11 +913,11 @@ async function loadProjects() {
         </div>
 
         <h3>
-          Erro inesperado
+          Erro ao carregar projetos
         </h3>
 
         <p>
-          Verifique a conexão com o Supabase.
+          Não foi possível acessar os projetos.
         </p>
 
       </div>
@@ -364,140 +927,6 @@ async function loadProjects() {
   }
 
 }
-
-
-// ======================================================
-// CADASTRO DE USUÁRIO
-// ======================================================
-
-document.addEventListener(
-  'DOMContentLoaded',
-  () => {
-
-    const userForm =
-      document.getElementById(
-        'user-form'
-      );
-
-
-    if (!userForm) {
-
-      return;
-
-    }
-
-
-    userForm.addEventListener(
-      'submit',
-      async (e) => {
-
-        e.preventDefault();
-
-
-        if (!supabaseClient) {
-
-          alert(
-            'Supabase não configurado.'
-          );
-
-          return;
-
-        }
-
-
-        const nome =
-          document
-            .getElementById('nome')
-            .value
-            .trim();
-
-
-        const email =
-          document
-            .getElementById('email')
-            .value
-            .trim();
-
-
-        const senha =
-          document
-            .getElementById('senha')
-            .value;
-
-
-        const tipo_usuario =
-          document
-            .getElementById('tipo_usuario')
-            .value;
-
-
-        // =========================
-        // CADASTRO
-        // =========================
-
-        const {
-          data,
-          error
-        } =
-          await supabaseClient.auth.signUp({
-
-            email: email,
-
-            password: senha,
-
-            options: {
-
-              data: {
-
-                nome:
-                  nome,
-
-                tipo_usuario:
-                  tipo_usuario
-
-              }
-
-            }
-
-          });
-
-
-        if (error) {
-
-          console.error(
-            'Erro no cadastro:',
-            error
-          );
-
-
-          alert(
-            'Erro ao cadastrar usuário: ' +
-            error.message
-          );
-
-          return;
-
-        }
-
-
-        console.log(
-          'Usuário criado:',
-          data
-        );
-
-
-        alert(
-          'Usuário cadastrado com sucesso!'
-        );
-
-
-        userForm.reset();
-
-      }
-    );
-
-  }
-);
 
 
 // ======================================================
@@ -514,29 +943,16 @@ document.addEventListener(
       );
 
 
-    if (!leadForm) {
-
+    if (!leadForm || !supabaseClient) {
       return;
-
     }
 
 
     leadForm.addEventListener(
       'submit',
-      async (e) => {
+      async (event) => {
 
-        e.preventDefault();
-
-
-        if (!supabaseClient) {
-
-          alert(
-            'Supabase não configurado.'
-          );
-
-          return;
-
-        }
+        event.preventDefault();
 
 
         const nome =
@@ -579,45 +995,29 @@ document.addEventListener(
             .trim();
 
 
-        // =========================
-        // ENVIO PARA SUPABASE
-        // =========================
-
         const {
           error
         } =
           await supabaseClient
-
             .from('leads')
+            .insert([{
 
-            .insert([
+              nome,
 
-              {
+              email,
 
-                nome,
+              telefone,
 
-                email,
+              servico_interesse,
 
-                telefone,
+              orcamento_estimado,
 
-                servico_interesse,
+              assunto
 
-                orcamento_estimado,
-
-                assunto
-
-              }
-
-            ]);
+            }]);
 
 
         if (error) {
-
-          console.error(
-            'Erro ao enviar mensagem:',
-            error
-          );
-
 
           alert(
             'Erro ao enviar mensagem: ' +
@@ -630,7 +1030,7 @@ document.addEventListener(
 
 
         alert(
-          'Mensagem enviada com sucesso!'
+          'Mensagem enviada com sucesso! ✅'
         );
 
 
