@@ -1,85 +1,267 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contato - DevPortfolio</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
 
-  <!-- NAVEGAÇÃO -->
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Contato - Meu Portfolio</title>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body class="contato-page">
+
+
+  <!-- =========================
+       NAVEGAÇÃO
+  ========================== -->
+
   <header>
+
     <div class="container nav-container">
-      <a href="index.html" class="logo">DevPortfolio</a>
+
+      <a href="index.html" class="logo">
+        Meu Portfolio
+      </a>
+
+
       <nav>
+
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="sobre.html">Sobre Mim</a></li>
-          <li><a href="portfolio.html">Portfólio</a></li>
-          <li><a href="contato.html" class="active">Contato</a></li>
+
+          <li>
+            <a href="index.html">
+              Home
+            </a>
+          </li>
+
+          <li>
+            <a href="sobre.html">
+              Sobre Mim
+            </a>
+          </li>
+
+          <li>
+            <a href="portfolio.html">
+              Portfólio
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="contato.html"
+              class="active"
+            >
+              Contato
+            </a>
+          </li>
+
         </ul>
+
       </nav>
+
     </div>
+
   </header>
 
-  <!-- CONTEÚDO PRINCIPAL -->
-  <main class="container">
-    <h1 class="page-title">Entre em Contato</h1>
-    
-    <div class="card">
+
+  <!-- =========================
+       CONTEÚDO
+  ========================== -->
+
+  <main class="container contato-main">
+
+
+    <section class="contato-intro">
+
+      <span class="mini-titulo">
+        FALE COMIGO
+      </span>
+
+      <h1>
+        Entre em <span>Contato</span>
+      </h1>
+
+      <p>
+        Tem uma ideia de projeto ou quer conversar sobre
+        desenvolvimento web? Envie uma mensagem.
+      </p>
+
+    </section>
+
+
+    <!-- =========================
+         FORMULÁRIO
+    ========================== -->
+
+    <div class="card contato-card">
+
       <form id="lead-form">
+
+
         <div class="form-group">
-          <label for="lead-nome">Seu Nome</label>
-          <input type="text" id="lead-nome" placeholder="Seu nome" required>
-        </div>
-        <div class="form-group">
-          <label for="lead-email">E-mail</label>
-          <input type="email" id="lead-email" placeholder="seuemail@exemplo.com" required>
-        </div>
-        <div class="form-group">
-          <label for="lead-tel">Telefone / WhatsApp</label>
-          <input type="tel" id="lead-tel" placeholder="(00) 00000-0000" required>
+
+          <label for="lead-nome">
+            Seu Nome
+          </label>
+
+          <input
+            type="text"
+            id="lead-nome"
+            placeholder="Seu nome"
+            required
+          >
+
         </div>
 
-        <!-- SELECTION 4 -->
+
         <div class="form-group">
-          <label for="lead-servico">Serviço de Interesse</label>
+
+          <label for="lead-email">
+            E-mail
+          </label>
+
+          <input
+            type="email"
+            id="lead-email"
+            placeholder="seuemail@exemplo.com"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="lead-tel">
+            Telefone / WhatsApp
+          </label>
+
+          <input
+            type="tel"
+            id="lead-tel"
+            placeholder="(00) 00000-0000"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="lead-servico">
+            Serviço de Interesse
+          </label>
+
           <select id="lead-servico" required>
-            <option value="Site Institucional">Criação de Site</option>
-            <option value="Sistema Web">Desenvolvimento de Sistema Web</option>
-            <option value="Consultoria">Consultoria Técnica</option>
+
+            <option value="Site Institucional">
+              Criação de Site
+            </option>
+
+            <option value="Sistema Web">
+              Desenvolvimento de Sistema Web
+            </option>
+
+            <option value="Consultoria">
+              Consultoria Técnica
+            </option>
+
           </select>
+
         </div>
 
-        <!-- SELECTION 5 -->
+
         <div class="form-group">
-          <label for="lead-orcamento">Orçamento Estimado</label>
+
+          <label for="lead-orcamento">
+            Orçamento Estimado
+          </label>
+
           <select id="lead-orcamento" required>
-            <option value="Até R$ 1.000">Até R$ 1.000</option>
-            <option value="R$ 1.000 a R$ 3.000">R$ 1.000 a R$ 3.000</option>
-            <option value="Acima de R$ 3.000">Acima de R$ 3.000</option>
+
+            <option value="Até R$ 1.000">
+              Até R$ 1.000
+            </option>
+
+            <option value="R$ 1.000 a R$ 3.000">
+              R$ 1.000 a R$ 3.000
+            </option>
+
+            <option value="Acima de R$ 3.000">
+              Acima de R$ 3.000
+            </option>
+
           </select>
+
         </div>
+
 
         <div class="form-group">
-          <label for="lead-assunto">Mensagem / Assunto</label>
-          <textarea id="lead-assunto" rows="4" placeholder="Escreva sua mensagem aqui..." required></textarea>
+
+          <label for="lead-assunto">
+            Mensagem / Assunto
+          </label>
+
+          <textarea
+            id="lead-assunto"
+            rows="5"
+            placeholder="Escreva sua mensagem aqui..."
+            required
+          ></textarea>
+
         </div>
 
-        <button type="submit" class="btn">Enviar Mensagem</button>
+
+        <button
+          type="submit"
+          class="btn"
+        >
+          Enviar Mensagem
+        </button>
+
+
       </form>
+
     </div>
+
   </main>
 
-  <!-- RODAPÉ -->
+
+  <!-- =========================
+       RODAPÉ
+  ========================== -->
+
   <footer>
+
     <div class="container">
-      <p>© <span id="year"></span> — Todos os direitos reservados.</p>
+
+      <p>
+        © <span id="year"></span>
+        — Todos os direitos reservados.
+      </p>
+
     </div>
+
   </footer>
+
+
+  <!-- SUPABASE -->
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+  <!-- JAVASCRIPT -->
+
   <script src="script.js"></script>
+
 </body>
+
 </html>
