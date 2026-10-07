@@ -2542,306 +2542,242 @@ footer p {
 
 }
 /* =========================================================
-   RODAPÉ PROFISSIONAL
+   RODAPÉ - PORTFÓLIO
    ========================================================= */
 
-footer.footer {
-    width: 100% !important;
-    margin: 90px 0 0 !important;
-    padding: 50px 30px 25px !important;
+.footer {
+    width: 100%;
+    box-sizing: border-box;
 
-    background:
-        radial-gradient(
-            circle at 50% 0%,
-            rgba(139, 92, 246, 0.16),
-            transparent 45%
-        ),
-        linear-gradient(
-            180deg,
-            #0d0a18 0%,
-            #08060f 100%
-        ) !important;
+    margin: 80px 0 0;
+    padding: 55px 25px 25px;
 
-    border-top: 1px solid rgba(139, 92, 246, 0.25) !important;
+    background: #080612;
 
-    position: relative !important;
+    border-top: 1px solid rgba(139, 92, 246, 0.25);
 
-    overflow: hidden !important;
-
-    box-sizing: border-box !important;
+    position: relative;
 }
 
 
-/* BRILHO SUPERIOR */
+/* LINHA ROXA NO TOPO */
 
-footer.footer::before {
-    content: "" !important;
+.footer::before {
+    content: "";
 
-    position: absolute !important;
+    position: absolute;
 
-    top: 0 !important;
-    left: 50% !important;
+    top: 0;
+    left: 50%;
 
-    width: 180px !important;
-    height: 3px !important;
+    width: 180px;
+    height: 3px;
 
-    transform: translateX(-50%) !important;
+    transform: translateX(-50%);
 
-    background: linear-gradient(
-        90deg,
-        transparent,
-        #8b5cf6,
-        #c084fc,
-        #8b5cf6,
-        transparent
-    ) !important;
+    background: #8b5cf6;
 
-    border-radius: 10px !important;
+    border-radius: 0 0 10px 10px;
 
     box-shadow:
-        0 0 15px rgba(139, 92, 246, 0.8) !important;
+        0 0 15px rgba(139, 92, 246, 0.8);
 }
 
 
-/* CONTEÚDO PRINCIPAL */
+/* =========================================================
+   ÁREA DOS 3 CARDS
+   ========================================================= */
 
-footer.footer .footer-content {
-    width: 100% !important;
+.footer-content {
+    width: 100%;
+    max-width: 1000px;
 
-    max-width: 1100px !important;
+    margin: 0 auto;
 
-    margin: 0 auto !important;
+    display: flex;
 
-    display: grid !important;
+    justify-content: center;
 
-    grid-template-columns:
-        repeat(3, 1fr) !important;
+    align-items: stretch;
 
-    gap: 22px !important;
-
-    align-items: stretch !important;
+    gap: 25px;
 }
 
 
-/* CARDS */
+/* =========================================================
+   CARD
+   ========================================================= */
 
-footer.footer .footer-card {
-    min-height: 85px !important;
+.footer-card {
+    width: 300px;
+    min-height: 90px;
 
-    padding: 18px 22px !important;
+    box-sizing: border-box;
 
-    display: flex !important;
+    padding: 18px 22px;
 
-    align-items: center !important;
+    display: flex;
 
-    gap: 15px !important;
+    align-items: center;
 
-    background:
-        rgba(139, 92, 246, 0.06) !important;
+    justify-content: flex-start;
 
-    border: 1px solid
-        rgba(139, 92, 246, 0.18) !important;
+    gap: 16px;
 
-    border-radius: 16px !important;
+    background: rgba(139, 92, 246, 0.06);
 
-    box-sizing: border-box !important;
+    border: 1px solid rgba(139, 92, 246, 0.20);
 
-    transition:
-        transform 0.3s ease,
-        border-color 0.3s ease,
-        background 0.3s ease,
-        box-shadow 0.3s ease !important;
+    border-radius: 14px;
+
+    transition: all 0.3s ease;
 }
 
 
 /* HOVER */
 
-footer.footer .footer-card:hover {
-    transform: translateY(-5px) !important;
+.footer-card:hover {
+    transform: translateY(-5px);
 
-    background:
-        rgba(139, 92, 246, 0.11) !important;
+    background: rgba(139, 92, 246, 0.11);
 
-    border-color:
-        rgba(192, 132, 252, 0.45) !important;
+    border-color: #8b5cf6;
 
     box-shadow:
-        0 12px 30px
-        rgba(139, 92, 246, 0.12) !important;
+        0 10px 30px rgba(139, 92, 246, 0.15);
 }
 
 
-/* ÍCONES */
+/* =========================================================
+   ÍCONE
+   ========================================================= */
 
-footer.footer .footer-icon {
-    width: 48px !important;
-    height: 48px !important;
+.footer-icon {
+    width: 48px;
+    height: 48px;
 
-    min-width: 48px !important;
+    min-width: 48px;
 
-    display: flex !important;
+    display: flex;
 
-    align-items: center !important;
-    justify-content: center !important;
+    align-items: center;
 
-    background:
-        rgba(139, 92, 246, 0.12) !important;
+    justify-content: center;
 
-    border:
-        1px solid rgba(139, 92, 246, 0.25) !important;
+    background: rgba(139, 92, 246, 0.12);
 
-    border-radius: 13px !important;
+    border: 1px solid rgba(139, 92, 246, 0.25);
 
-    font-size: 21px !important;
+    border-radius: 12px;
 
-    box-shadow:
-        0 0 18px
-        rgba(139, 92, 246, 0.08) !important;
+    font-size: 21px;
 }
 
 
-/* TEXTOS DOS CARDS */
+/* =========================================================
+   INFORMAÇÕES
+   ========================================================= */
 
-footer.footer .footer-card div:last-child {
-    min-width: 0 !important;
+.footer-info {
+    display: flex;
 
-    display: flex !important;
+    flex-direction: column;
 
-    flex-direction: column !important;
+    gap: 5px;
 
-    gap: 5px !important;
+    min-width: 0;
 }
 
 
-/* LABEL */
+/* TÍTULO */
 
-footer.footer .footer-card span {
-    display: block !important;
+.footer-info span {
+    color: #8d879b;
 
-    color: #8f899e !important;
+    font-size: 0.70rem;
 
-    font-size: 0.72rem !important;
+    font-weight: 700;
 
-    font-weight: 600 !important;
-
-    text-transform: uppercase !important;
-
-    letter-spacing: 1.2px !important;
+    letter-spacing: 1.2px;
 }
 
 
-/* LINKS */
+/* LINK */
 
-footer.footer .footer-card a {
-    display: block !important;
+.footer-info a {
+    color: #c084fc;
 
-    color: #c084fc !important;
+    font-size: 0.95rem;
 
-    font-size: 0.95rem !important;
+    font-weight: 700;
 
-    font-weight: 700 !important;
+    text-decoration: none;
 
-    text-decoration: none !important;
-
-    line-height: 1.4 !important;
-
-    transition:
-        color 0.25s ease,
-        text-shadow 0.25s ease !important;
+    transition: 0.25s ease;
 }
 
 
 /* HOVER LINK */
 
-footer.footer .footer-card a:hover {
-    color: #ffffff !important;
+.footer-info a:hover {
+    color: white;
 
     text-shadow:
-        0 0 12px
-        rgba(192, 132, 252, 0.75) !important;
+        0 0 12px rgba(192, 132, 252, 0.8);
 }
 
 
 /* ANO */
 
-footer.footer .footer-card strong {
-    display: block !important;
+.footer-info strong {
+    color: white;
 
-    color: #ffffff !important;
-
-    font-size: 1rem !important;
-
-    font-weight: 700 !important;
+    font-size: 1rem;
 }
 
 
-/* LINHA */
+/* =========================================================
+   DIVISOR
+   ========================================================= */
 
-footer.footer .footer-line {
-    width: 100% !important;
+.footer-divider {
+    width: 100%;
+    max-width: 1000px;
 
-    max-width: 1100px !important;
+    height: 1px;
 
-    height: 1px !important;
+    margin: 35px auto 22px;
 
-    margin: 35px auto 20px !important;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(139, 92, 246, 0.3),
-            transparent
-        ) !important;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(139, 92, 246, 0.35),
+        transparent
+    );
 }
 
 
-/* PARTE INFERIOR */
+/* =========================================================
+   PARTE INFERIOR
+   ========================================================= */
 
-footer.footer .footer-bottom {
-    width: 100% !important;
+.footer-bottom {
+    width: 100%;
+    max-width: 1000px;
 
-    max-width: 1100px !important;
+    margin: 0 auto;
 
-    margin: 0 auto !important;
+    display: flex;
 
-    padding: 0 !important;
+    align-items: center;
 
-    display: flex !important;
+    justify-content: space-between;
 
-    justify-content: space-between !important;
+    gap: 20px;
 
-    align-items: center !important;
+    color: #777184;
 
-    gap: 20px !important;
-}
-
-
-/* TEXTO */
-
-footer.footer .footer-bottom p {
-    margin: 0 !important;
-
-    color: #716b7d !important;
-
-    font-size: 0.82rem !important;
-
-    line-height: 1.5 !important;
-}
-
-
-/* TEXTO DA DIREITA */
-
-footer.footer .footer-bottom .footer-created {
-    color: #8b8498 !important;
-}
-
-
-/* DESTAQUE DO ANO */
-
-footer.footer #year,
-footer.footer #year-footer {
-    color: #c084fc !important;
+    font-size: 0.82rem;
 }
 
 
@@ -2849,55 +2785,54 @@ footer.footer #year-footer {
    RESPONSIVO
    ========================================================= */
 
-@media (max-width: 850px) {
+@media (max-width: 1000px) {
 
-    footer.footer .footer-content {
-        grid-template-columns: 1fr 1fr !important;
+    .footer-content {
+        max-width: 700px;
+
+        flex-wrap: wrap;
     }
 
-    footer.footer .footer-card:last-child {
-        grid-column: 1 / -1 !important;
+    .footer-card {
+        width: calc(50% - 13px);
     }
 
+    .footer-card:last-child {
+        width: 100%;
+        max-width: 300px;
+    }
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
 
-    footer.footer {
-        margin-top: 60px !important;
-
-        padding:
-            40px 18px 22px !important;
+    .footer {
+        padding: 45px 18px 22px;
     }
 
+    .footer-content {
+        flex-direction: column;
 
-    footer.footer .footer-content {
-        grid-template-columns: 1fr !important;
+        align-items: center;
 
-        gap: 14px !important;
+        gap: 15px;
     }
 
+    .footer-card,
+    .footer-card:last-child {
+        width: 100%;
 
-    footer.footer .footer-card:last-child {
-        grid-column: auto !important;
+        max-width: 400px;
     }
 
+    .footer-bottom {
+        flex-direction: column;
 
-    footer.footer .footer-card {
-        min-height: 75px !important;
+        justify-content: center;
 
-        padding: 15px 17px !important;
+        text-align: center;
+
+        gap: 8px;
     }
-
-
-    footer.footer .footer-bottom {
-        flex-direction: column !important;
-
-        text-align: center !important;
-
-        gap: 7px !important;
-    }
-
 }
 }
