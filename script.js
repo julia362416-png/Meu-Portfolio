@@ -1,16 +1,6 @@
-/* =========================================================
-   CONFIGURAÇÃO DO SUPABASE
-   ========================================================= */
-
 const SUPABASE_URL = "https://uoqvnwkcvctbaujalprc.supabase.co";
 
-const SUPABASE_KEY =
-    "sb_publishable_x7mGxz7QtNNB1JAAZIpPew_UsJ1RDbK2";
-
-
-/* =========================================================
-   CONEXÃO COM O SUPABASE
-   ========================================================= */
+const SUPABASE_KEY = "sb_publishable_x7mGxz7QtNNB1JAAZIpPew_UsJ1RDb2";
 
 const supabaseClient = window.supabase.createClient(
     SUPABASE_URL,
